@@ -1,6 +1,6 @@
 /**
  * 
- *  Copyright (c) 2013 Robert E. McGrath
+ *  Copyright (c) 2013, 2014 Robert E. McGrath
  *
  *  Created for use by the Champaign Urbana Community Fab Lab
  *
@@ -10,6 +10,8 @@
  */
 
 /*
+ * A look up table with empirically derived values for the cut line width for various materials.
+ * 
  * Wish list:  read this data from XML, make it easy to reconfigure....
  */
 

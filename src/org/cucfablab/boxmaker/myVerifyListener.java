@@ -1,6 +1,6 @@
 /**
  * 
- *  Copyright (c) 2013 Robert E. McGrath
+ *  Copyright (c) 2013, 2014 Robert E. McGrath
  *
  *  Created for use by the Champaign Urbana Community Fab Lab
  *
@@ -9,6 +9,12 @@
  *  http://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
+/*
+ *  Listaner that manages input as float numbers.
+ *  
+ *  Input is saved in an instance of a 'userSettings' object, for later use.
+ *  
+ */
 package org.cucfablab.boxmaker;
 
 import org.eclipse.swt.events.VerifyEvent;

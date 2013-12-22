@@ -1,12 +1,17 @@
 /**
  * 
- *  Copyright (c) 2013 Robert E. McGrath
+ *  Copyright (c) 2013, 2014 Robert E. McGrath
  *
  *  Created for use by the Champaign Urbana Community Fab Lab
  *
  *  boxmakerGUI by Robert E. McGrath is licensed under a 
  *  Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
  *  http://creativecommons.org/licenses/by-nc-sa/4.0/
+ */
+
+/*
+ *  Display the contents of a URL in a separate window.
+ *  This works best for HTML.
  */
 
 package org.cucfablab.boxmaker;
@@ -27,6 +32,12 @@ public class splashScreen {
 	String title = null;
 	String path = null;
 
+	/*
+	 * Create screen for file.  HTML works best, other formats work on some platforms.
+	 * 
+	 *  @param tit Title for the screen
+	 *  @param filePath path to the file to be displayed.
+	 */
 	public splashScreen(String tit, String filePath) {
 		title = tit;
 		path = filePath;

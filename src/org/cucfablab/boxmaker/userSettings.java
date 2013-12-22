@@ -1,6 +1,6 @@
 /**
  * 
- *  Copyright (c) 2013 Robert E. McGrath
+ *  Copyright (c) 2013, 2014 Robert E. McGrath
  *
  *  Created for use by the Champaign Urbana Community Fab Lab
  *
@@ -9,6 +9,9 @@
  *  http://creativecommons.org/licenses/by-nc-sa/4.0/
  */
 
+/*
+ *  Collection of all the user inputs, optional sanity checks.
+ */
 package org.cucfablab.boxmaker;
 
 import org.eclipse.core.runtime.IStatus;

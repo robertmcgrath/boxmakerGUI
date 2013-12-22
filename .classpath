@@ -16,7 +16,7 @@
 	<classpathentry kind="lib" path="/Users/mcgrath/Work/eclipse-k/plugins/org.eclipse.ui.forms_3.6.1.v20130822-1117.jar" sourcepath="/Users/mcgrath/Work/eclipse-k/plugins/org.eclipse.ui.forms.source_3.6.1.v20130822-1117.jar"/>
 	<classpathentry kind="lib" path="lib/icepdf-core.jar"/>
 	<classpathentry kind="lib" path="lib/icepdf-viewer.jar"/>
-	<classpathentry kind="lib" path="dist/BOX.jar"/>
 	<classpathentry kind="lib" path="lib/swing2swt.jar"/>
+	<classpathentry kind="lib" path="BOX.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
