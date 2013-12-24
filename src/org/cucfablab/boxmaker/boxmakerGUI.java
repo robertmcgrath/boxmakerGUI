@@ -110,7 +110,7 @@ public class boxmakerGUI {
 	 * 
 	 * Sets and gets values from the global userSettings object
 	 * 
-	 * Hnadles the behavior of the buttons, checkbox, and list.
+	 * Handles the behavior of the buttons, checkbox, and list.
 	 *
 	 */
 	// this is a private class because it messes with the values in the display.
