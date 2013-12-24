@@ -12,7 +12,9 @@
 /*
  * A look up table with empirically derived values for the cut line width for various materials.
  * 
- * Wish list:  read this data from XML, make it easy to reconfigure....
+ * These values should be taken as suggestions, they may need to ba adjusted for a given use.
+ * 
+ * Wish list:  read this data from XML, to make it easy to reconfigure....
  */
 
 package org.cucfablab.boxmaker;
@@ -28,7 +30,7 @@ public class materialsList {
 
 	public materialsList() {
 
-		// The order here is the order they appear in the menu...
+		// The order here is the order the items appear in the menu...
 		mats.add("Custom");
 		wids.add(0.0);
 		widsInch.add(0.0);

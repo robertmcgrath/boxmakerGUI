@@ -104,7 +104,16 @@ public class boxmakerGUI {
 		}
 	}
 
-	// this is a private class becuase it messes with the values in the display.
+	/**
+	 * 
+	 * Private class that handles the selection events for the GUI.
+	 * 
+	 * Sets and gets values from the global userSettings object
+	 * 
+	 * Hnadles the behavior of the buttons, checkbox, and list.
+	 *
+	 */
+	// this is a private class because it messes with the values in the display.
 	private class mySelectionAdapter extends SelectionAdapter {
 
 		@Override
@@ -118,7 +127,7 @@ public class boxmakerGUI {
 				Button b = (Button) e.getSource();
 
 				if (b.getToolTipText().contains("Reset")) {
-					// do reset
+					// reset the state, and clear all the displayed fields
 					us.reset();
 					enterHeight.setText("0.0");
 					enterWidth.setText("0.0");
@@ -132,23 +141,29 @@ public class boxmakerGUI {
 					btnRadioButtonUnitsMM.setSelection(true);
 					btnRadioButtonUnitsInches.setSelection(false);
 				} else if (b.getToolTipText().contains("Quit")) {
-					// any clean up? temp files?
 					System.exit(0);
 				} else if (b.getToolTipText().contains("Explain")) {
+					// create a separate splash screen and display the user instructions
 					splashScreen s1 = new splashScreen("Box Maker Parameters",
 							"docs/BoxParms1.htm");
 					s1.postIt();
 				} else if (b.getToolTipText().contains("Help")) {
+					// create a separate splash screen and display the general informations
 					splashScreen s1 = new splashScreen("About BoxMaker",
 							"docs/Information_about_Boxmaker.htm");
 					s1.postIt();
 				} else if (b.getToolTipText().contains("Make")) {
-
+					// check the parameters, then call rahulbot BoxMaker
+					//
+					//  this is the main action to create the box
+					//
 					boolean isOK = us.testConstraints(true);
+					// if 'not isOK' then the testConstraints will have displayed a dialog
+					//    to do:  check behavior when !isOK
 					if (isOK) {
 						File bf = new File("BOX.jar");
 						if (!bf.exists()) {
-							// fail here
+							// fail here because the required program is not found
 							Status status = new Status(IStatus.ERROR,
 									"BoxMakerGUI", 0,
 									"BoxMaker Program Exec Failed", null);
@@ -159,8 +174,8 @@ public class boxmakerGUI {
 							return;
 						}
 
-						System.out.println("inches? " + us.getUseInches());
-
+						// retrieve the parameters from the userSEttings, construct the call to
+						//  BOX.jar
 						String cmd = "java -cp BOX.jar com.rahulbotics.boxmaker.CommandLine "
 								+ "boxmaker.pdf "
 								+ us.getWidth(us.getUseInches())
@@ -177,9 +192,12 @@ public class boxmakerGUI {
 								+ " "
 								+ "false true true true " + us.getPortrait();
 						boolean failed = false;
-						System.out.println("exec " + cmd);
+						//System.out.println("exec " + cmd);
+						// Execute the command n a separate process
 						try {
 							Process p = Runtime.getRuntime().exec(cmd);
+							
+							// print the output of the process, if any, to the console (mainly for debugging)
 							String scan = "";
 							Scanner sc = new Scanner(p.getInputStream());
 							int lns = 0;
@@ -191,6 +209,7 @@ public class boxmakerGUI {
 							}
 							sc.close();
 							if (lns > 0) {
+								// if there is any output, there was an error, so pop up a dialog
 								Status status = new Status(IStatus.INFO,
 										"BoxMakerGUI", 0,
 										"BoxMaker Program Messages", null);
@@ -199,9 +218,11 @@ public class boxmakerGUI {
 										scan, status);
 							}
 							if (p.exitValue() == 0) {
+								// job failed for some reason
 								failed = true;
 							}
 						} catch (IOException ioe) {
+							// the fork/exec raised an exception, job failed.  Pop up a dialog with the exception.
 							Status status = new Status(IStatus.ERROR,
 									"BoxMakerGUI", 0,
 									"BoxMaker Program Exec Failed", null);
@@ -210,14 +231,20 @@ public class boxmakerGUI {
 									.getMessage(), status);
 							failed = true;
 						}
-
+						
+						// Process completed, result should be in file called 'boxmaker.pdf' 
 						File f = new File("boxmaker.pdf");
 						if (!f.exists()) {
+							// No output was created, job failed.
+							// to do probably should raise a dialog here...
 							System.err.println("output file not found...");
 							failed = true;
 
 						}
 						if (!failed) {
+							// Success!  
+							// Save the output to a file selected by the user,
+							// pop up a 'safe save dialog', rename the default file
 							Display display = Display.getDefault();
 							Shell shell = new Shell(display);
 							mySafeSaveDialog ssfile = new mySafeSaveDialog(
@@ -229,15 +256,18 @@ public class boxmakerGUI {
 							if (ssfile.getFileName().endsWith(".pdf")) {
 								extra = "";
 							}
-							System.out.println("save " + f.getAbsolutePath()
-									+ "as " + ssfile.getFileName() + " in "
-									+ ssfile.getFilterPath());
+							//System.out.println("save " + f.getAbsolutePath()
+							//		+ "as " + ssfile.getFileName() + " in "
+							//		+ ssfile.getFilterPath());
 
 							f.renameTo(new File(ssfile.getFilterPath() + "/"
 									+ ssfile.getFileName() + extra));
-
+							
+							// note:  remember the file name so we can find the most recent result...
 							us.setUserSavedFile(ssfile.getFilterPath() + "/"
 									+ ssfile.getFileName() + extra);
+							
+							// enable the preview button now that there is something to preview
 							btnPreview.setEnabled(true);
 							while (!shell.isDisposed()) {
 								if (!display.readAndDispatch())
@@ -246,11 +276,14 @@ public class boxmakerGUI {
 							display.dispose();
 						}
 
-					}
+					} 
+					// note:  'not OK/ comes here-- messages already shown.
 
 				} else if (b.getToolTipText().contains("Preview")) {
 
-					// make my own preview window...one that works everywhere...
+					// Preview the most recently created PDF
+					//
+					// This uses the a class that uses icePDF.
 					Launcher l = new Launcher();
 
 					String contentURL = "";
@@ -264,6 +297,7 @@ public class boxmakerGUI {
 							messageBundle);
 
 				} else if (b.getToolTipText().contains("Units")) {
+					// Select the units.  Numbers entered will be converted to millimeters if needed
 					if (btnRadioButtonUnitsMM.getSelection()) {
 						us.setUseInches(false);
 					} else {
@@ -272,7 +306,7 @@ public class boxmakerGUI {
 				}
 
 			} else if (e.getSource().getClass().getName().contains("Check")) {
-
+				//  The checkbox selects portrait/landscape layout
 				if (us.getPortrait()) {
 					us.setPortrait(false);
 					btnPortrait.setSelection(false);
@@ -281,7 +315,8 @@ public class boxmakerGUI {
 					btnPortrait.setSelection(false);
 				}
 			} else if (e.getSource().getClass().getName().contains("List")) {
-
+				// Selection from the list of materials
+				//  look up the stored cut width
 				List l = (List) (e.getSource());
 				String[] sel = l.getSelection();
 				if (sel.length > 0) {

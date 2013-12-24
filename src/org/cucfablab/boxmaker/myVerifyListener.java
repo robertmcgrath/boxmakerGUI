@@ -33,7 +33,9 @@ public class myVerifyListener implements VerifyListener {
 	@Override
 	public void verifyText(VerifyEvent e) {
 
-		// 'busy' flag can be used to prevent recursion if needed
+		// 'busy' flag can be used to prevent recursion if needed.  This happens if
+		//  any of the code touches an input field.  Generally, this should not be done, but
+		//  better safe than sorry.
 		if (busy) {
 			e.doit = false;
 			return;
@@ -70,6 +72,7 @@ public class myVerifyListener implements VerifyListener {
 			// System.out.println("rejecting "+newS);
 		}
 		if (isFloat) {
+			// set the appropriate parameter
 			if (text.getToolTipText().startsWith("Height")) {
 				us.setHeight(fv);
 			}

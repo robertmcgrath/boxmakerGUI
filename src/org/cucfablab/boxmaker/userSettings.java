@@ -162,11 +162,24 @@ public class userSettings {
 		return !valuesSet;
 	}
 
+	/**
+	 * 
+	 * Check the logical consistency and validity of the current settings in the
+	 * userSettings.
+	 * 
+	 * Additional checks should be added here.
+	 * 
+	 * @param popup  generate a popup dialog with errors
+	 * @return true if everything OK, false if error found
+	 */
 	public boolean testConstraints(boolean popup) {
 		// check logical constraints on values
 		boolean isOK = true;
 		int numErrors = 0;
 		String msg = "";
+		
+		// if any constraint fails, add string to the msg.
+		
 		if (height < 1.0) {
 			msg += "height < 1: dimesions cannot be less than 1 mm\n";
 			isOK = false;
@@ -225,9 +238,10 @@ public class userSettings {
 			numErrors++;
 		}
 
-		// more error checks
+		// more error checks?
 
 		if ((numErrors > 0) && popup) {
+			// pop up an error dialog with the messages
 			Status status = new Status(IStatus.ERROR, "BoxMakerGUI", 0,
 					"Parameter Errors: Constraints violated", null);
 			ErrorDialog.openError(Display.getCurrent().getActiveShell(),
