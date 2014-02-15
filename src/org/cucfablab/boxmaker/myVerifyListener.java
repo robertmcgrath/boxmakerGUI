@@ -57,12 +57,17 @@ public class myVerifyListener implements VerifyListener {
 		} catch (NumberFormatException ex) {
 			isFloat = false;
 		}
+		
+		if (fv == null) {
+			// Erased whole field - OK, but set value to zero, leave field blank.
+			fv = 0.0;
+		}
 
 		boolean isNum = false;
 
 		// Not sure about this logic --
 		// this is the case where there is one character, which does not parse
-		// to a float--want to erace it?
+		// to a float--want to erase it?
 		if (!isFloat && (oldS.length() == 1)) {
 			isNum = true;
 		}

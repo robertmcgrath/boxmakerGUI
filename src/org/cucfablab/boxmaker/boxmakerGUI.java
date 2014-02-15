@@ -673,7 +673,7 @@ public class boxmakerGUI {
 		Label lblSCutWidthhmm = new Label(shlBoxmaker, SWT.NONE);
 		lblSCutWidthhmm.setFont(SWTResourceManager.getFont("Arial", 14,
 				SWT.NORMAL));
-		lblSCutWidthhmm.setText("Cut Width (mm)");
+		lblSCutWidthhmm.setText("Cut Width");
 		new Label(shlBoxmaker, SWT.NONE);
 		new Label(shlBoxmaker, SWT.NONE);
 
