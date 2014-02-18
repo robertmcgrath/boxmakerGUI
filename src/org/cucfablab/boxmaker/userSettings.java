@@ -14,15 +14,27 @@
  */
 package org.cucfablab.boxmaker;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.widgets.Display;
 
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.*;
+import javax.xml.transform.stream.*;
+
+import org.xml.sax.*;
+import org.w3c.dom.*;
+
 public class userSettings {
 	private double height, width, depth;
 	private double cutwid, slotwid, slotdep;
-	private boolean doPortrait = true;
+	private boolean doPortrait = false;
 	private boolean valuesSet = false;
 	private String userSavedFile = null;
 	private boolean useInches = false;
@@ -40,7 +52,6 @@ public class userSettings {
 
 	public void setPortrait(boolean p) {
 		doPortrait = p;
-
 	}
 
 	public boolean getPortrait() {
@@ -169,7 +180,8 @@ public class userSettings {
 	 * 
 	 * Additional checks should be added here.
 	 * 
-	 * @param popup  generate a popup dialog with errors
+	 * @param popup
+	 *            generate a popup dialog with errors
 	 * @return true if everything OK, false if error found
 	 */
 	public boolean testConstraints(boolean popup) {
@@ -177,9 +189,9 @@ public class userSettings {
 		boolean isOK = true;
 		int numErrors = 0;
 		String msg = "";
-		
+
 		// if any constraint fails, add string to the msg.
-		
+
 		if (height < 1.0) {
 			msg += "height < 1: dimesions cannot be less than 1 mm\n";
 			isOK = false;
@@ -258,9 +270,223 @@ public class userSettings {
 		cutwid = 0.0;
 		slotwid = 0.0;
 		slotdep = 0.0;
+		doPortrait = false;
 		userSavedFile = null;
 		useInches = false;
 		valuesSet = false;
 	}
 
+	// // not working yet crashes when transform is called....
+	public void saveToFile(String filename) {
+		// tryit();
+		Document dom;
+		Element e = null;
+
+		// instance of a DocumentBuilderFactory
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		try {
+			// use factory to get an instance of document builder
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			// create instance of DOM
+			dom = db.newDocument();
+
+			// create the root element
+			Element rootEle = dom.createElement("userSettings");
+			dom.appendChild(rootEle);
+
+			// create data elements and place them under root
+			e = dom.createElement("height");
+			e.appendChild(dom.createTextNode(Double.toString(height)));
+			rootEle.appendChild(e);
+
+			e = dom.createElement("width");
+			e.appendChild(dom.createTextNode(Double.toString(width)));
+			rootEle.appendChild(e);
+
+			e = dom.createElement("depth");
+			e.appendChild(dom.createTextNode(Double.toString(depth)));
+			rootEle.appendChild(e);
+
+			e = dom.createElement("cutwid");
+			e.appendChild(dom.createTextNode(Double.toString(cutwid)));
+			rootEle.appendChild(e);
+
+			e = dom.createElement("slotwid");
+			e.appendChild(dom.createTextNode(Double.toString(slotwid)));
+			rootEle.appendChild(e);
+
+			e = dom.createElement("slotdep");
+			e.appendChild(dom.createTextNode(Double.toString(slotdep)));
+			rootEle.appendChild(e);
+
+			e = dom.createElement("doPortrait");
+			e.appendChild(dom.createTextNode(Boolean.toString(doPortrait)));
+			rootEle.appendChild(e);
+
+			if (userSavedFile == null) {
+				e = dom.createElement("userSavedFile");
+				e.appendChild(dom.createTextNode("null"));
+				rootEle.appendChild(e);
+			} else {
+				e = dom.createElement("userSavedFile");
+				e.appendChild(dom.createTextNode(userSavedFile));
+				rootEle.appendChild(e);
+			}
+
+			e = dom.createElement("useInches");
+			e.appendChild(dom.createTextNode(Boolean.toString(useInches)));
+			rootEle.appendChild(e);
+
+			try {
+
+				Transformer tr = TransformerFactory.newInstance()
+						.newTransformer();
+				tr.setOutputProperty(OutputKeys.INDENT, "yes");
+				tr.setOutputProperty(OutputKeys.METHOD, "xml");
+				tr.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+				// tr.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM,
+				// "userSettings.dtd");
+				tr.setOutputProperty(
+						"{http://xml.apache.org/xslt}indent-amount", "4");
+
+				StreamResult sr = new StreamResult(new File(filename));
+				DOMSource ds = new DOMSource(dom);
+
+				// send DOM to file
+				tr.transform(ds, sr);
+				// System.out.println("written to "+filename);
+			} catch (TransformerException te) {
+				System.out.println(te.getMessage());
+			}
+		} catch (ParserConfigurationException pce) {
+			System.out
+					.println("UsersXML: Error trying to instantiate DocumentBuilder "
+							+ pce);
+		}
+	}
+
+	private void setValueFromText(String name, String value) {
+		if (name.equals("height")) {
+			Double v = new Double(value);
+			height = v;
+		} else if (name.equals("width")) {
+			Double v = new Double(value);
+			width = v;
+		} else if (name.equals("depth")) {
+			Double v = new Double(value);
+			depth = v;
+		} else if (name.equals("depth")) {
+			Double v = new Double(value);
+			depth = v;
+		} else if (name.equals("depth")) {
+			Double v = new Double(value);
+			depth = v;
+		} else if (name.equals("cutwid")) {
+			Double v = new Double(value);
+			cutwid = v;
+		} else if (name.equals("slotwid")) {
+			Double v = new Double(value);
+			slotwid = v;
+		} else if (name.equals("slotdep")) {
+			Double v = new Double(value);
+			slotdep = v;
+		} else if (name.equals("doPortrait")) {
+			if (value.equals("true")) {
+				doPortrait = true;
+			} else if (value.equals("false")) {
+				doPortrait = false;
+			} else {
+				// ??? error???
+			}
+
+		} else if (name.equals("useInches")) {
+			if (value.equals("true")) {
+				useInches = true;
+			} else if (value.equals("false")) {
+				useInches = false;
+			} else {
+				// ??? error???
+			}
+
+		} else if (name.equals("userSavedFile")) {
+			if (value.equals("null")) {
+				userSavedFile = null;
+			} else {
+				userSavedFile = value;
+			}
+
+		}
+	}
+
+	private void parseElement(Document document, String targ) {
+		NodeList nlist = document.getElementsByTagName(targ);
+
+		if (nlist.getLength() > 0) {
+
+			Node e = nlist.item(0);
+			String n = e.getNodeName();
+			NodeList hec = e.getChildNodes();
+
+			if (hec.getLength() > 0) {
+				Node hev = hec.item(0);
+				String v = hev.getNodeValue();
+				// System.out.println("setValue( "+n+", "+v);
+				setValueFromText(n, v);
+			}
+
+		}
+	}
+
+	public void loadSettings(String xmlfile) {
+		System.out.println("load from " + xmlfile);
+		Document document = null;
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
+		try {
+			File f = new File(xmlfile);
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			document = builder.parse(f);
+
+		} catch (SAXParseException spe) {
+			// Error generated by the parser
+			System.out.println("\n** Parsing error" + ", line "
+					+ spe.getLineNumber() + ", uri " + spe.getSystemId());
+			System.out.println("  " + spe.getMessage());
+
+			// Use the contained exception, if any
+			Exception x = spe;
+			if (spe.getException() != null)
+				x = spe.getException();
+			x.printStackTrace();
+		} catch (SAXException sxe) {
+			// Error generated by this application
+			// (or a parser-initialization error)
+			Exception x = sxe;
+			if (sxe.getException() != null)
+				x = sxe.getException();
+			x.printStackTrace();
+		} catch (ParserConfigurationException pce) {
+			// Parser with specified options
+			// cannot be built
+			pce.printStackTrace();
+		} catch (IOException ioe) {
+			// I/O error
+			ioe.printStackTrace();
+		}
+
+		if (document != null) {
+
+			parseElement(document, "height");
+			parseElement(document, "width");
+			parseElement(document, "depth");
+			parseElement(document, "cutwid");
+			parseElement(document, "slotwid");
+			parseElement(document, "slotdep");
+			parseElement(document, "doPortrait");
+			parseElement(document, "userSavedFile");
+			parseElement(document, "useInches");
+			valuesSet = true;
+
+		}
+	}
 };
