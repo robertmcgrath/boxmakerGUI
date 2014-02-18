@@ -1,0 +1,2 @@
+The app depends on libraries that require java 64 bit.:
+
