@@ -668,7 +668,7 @@ public class boxmakerGUI {
 	protected void createContents() {
 
 		shlBoxmaker = new Shell();
-		shlBoxmaker.setSize(580, 580);
+		shlBoxmaker.setSize(600, 600);
 		shlBoxmaker.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		shlBoxmaker.setText("BoxMaker");
 		GridLayout gl_shlBoxmaker = new GridLayout(7, false);
