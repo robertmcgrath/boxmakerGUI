@@ -1,0 +1,35 @@
+The boxmakerGUI is a Java(TM) application, which is intended to be built in Elcipse.  It is not intended to be a web app or run on a handheld device.
+
+The boxmakerGUI is a wrapper for the 'boxmaker' from rahulbot.  This program depends on modifications to the original boxmaker program.
+
+The sources for the modified boxmaker are available at:
+
+	https://github.com/robertmcgrath/boxmaker.git
+
+It is not necessary to build the sources, the boxmakerGUI project includes all the needed code in the dist/Box.jar file.
+
+The boxmakerGUI sources and documentation are available at:
+
+	https://github.com/robertmcgrath/boxmakerGUI.git
+
+boxmakerGUI uses the Eclipse SWT design plugin, and requires several java libraries which call platform specifc code.  For this reason, the Java project may need to be adjusted to use the libraries for the platform you are building on.
+
+A platform specific version of the swt support library will be needed (e.g, for Apple MacOS the plugin is
+	plugins/org.eclipse.swt.cocoa.macosx.x86_64_3.102.1.v20130827-2048.jar
+and a windows of linux version would be needed.
+
+Other libraries that call platform specific code may include:
+	plugins/org.eclipse.text_3.5.300.v20130515-1451.jar"
+	plugins/org.eclipse.jface_3.9.1.v20130725-1141.jar
+	plugins/org.eclipse.jface.text_3.8.101.v20130802-1147.jar
+	plugins/org.eclipse.ui.workbench_3.105.1.v20130821-1411.jar 
+	plugins/com.ibm.icu_50.1.1.v201304230130.jar
+	plugins/org.eclipse.ui.forms_3.6.1.v20130822-1117.jar
+
+It is necessary to configure eclipse to use the correct version of these program.  This is done in the Eclipse Project>>Properties>>Java Build Path>>Libraries tab.
+
+Once these libraries are correctly configured, the program should compile.
+
+Note that the run time documentation is in the directory 'docs', and when the program runs it expects the documents to be located in that directory.  Thereform, when the program is exported as an executable jar it is important to include the docs folder where the jar is executed.
+
+
