@@ -1,0 +1,244 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3B37AA1918DF22C6007E9D2C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 3B37AA1818DF22C6007E9D2C /* main.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3B27935A18DDE8500035EB38 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3B27935C18DDE8500035EB38 /* BoxmakerLauncher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BoxmakerLauncher; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B37AA1818DF22C6007E9D2C /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = BoxmakerLauncher/main.c; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3B27935918DDE8500035EB38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3B27935318DDE84F0035EB38 = {
+			isa = PBXGroup;
+			children = (
+				3B27935E18DDE8500035EB38 /* BoxmakerLauncher */,
+				3B27935D18DDE8500035EB38 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3B27935D18DDE8500035EB38 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3B27935C18DDE8500035EB38 /* BoxmakerLauncher */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3B27935E18DDE8500035EB38 /* BoxmakerLauncher */ = {
+			isa = PBXGroup;
+			children = (
+				3B37AA1818DF22C6007E9D2C /* main.c */,
+			);
+			name = BoxmakerLauncher;
+			path = BoxmakerLauncherX;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3B27935B18DDE8500035EB38 /* BoxmakerLauncher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B27936518DDE8500035EB38 /* Build configuration list for PBXNativeTarget "BoxmakerLauncher" */;
+			buildPhases = (
+				3B27935818DDE8500035EB38 /* Sources */,
+				3B27935918DDE8500035EB38 /* Frameworks */,
+				3B27935A18DDE8500035EB38 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BoxmakerLauncher;
+			productName = BoxmakerLauncherX;
+			productReference = 3B27935C18DDE8500035EB38 /* BoxmakerLauncher */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3B27935418DDE84F0035EB38 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "___Champaign_Urbana Community_Fab_Lab___";
+			};
+			buildConfigurationList = 3B27935718DDE84F0035EB38 /* Build configuration list for PBXProject "BoxmakerLauncher" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3B27935318DDE84F0035EB38;
+			productRefGroup = 3B27935D18DDE8500035EB38 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3B27935B18DDE8500035EB38 /* BoxmakerLauncher */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3B27935818DDE8500035EB38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B37AA1918DF22C6007E9D2C /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3B27936318DDE8500035EB38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = BoxmakerLauncher;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3B27936418DDE8500035EB38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = BoxmakerLauncher;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3B27936618DDE8500035EB38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = ../dist;
+				INSTALL_PATH = "";
+				"INSTALL_PATH[sdk=*]" = "";
+				PRODUCT_NAME = BoxmakerLauncher;
+			};
+			name = Debug;
+		};
+		3B27936718DDE8500035EB38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = ../dist;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = BoxmakerLauncher;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3B27935718DDE84F0035EB38 /* Build configuration list for PBXProject "BoxmakerLauncher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B27936318DDE8500035EB38 /* Debug */,
+				3B27936418DDE8500035EB38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B27936518DDE8500035EB38 /* Build configuration list for PBXNativeTarget "BoxmakerLauncher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B27936618DDE8500035EB38 /* Debug */,
+				3B27936718DDE8500035EB38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3B27935418DDE84F0035EB38 /* Project object */;
+}
